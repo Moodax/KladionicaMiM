@@ -15,6 +15,15 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_DALJE_clicked();
+
+    void on_prvaMomcad_clicked();
+
+    void on_drugaMomcad_clicked();
+
+    void on_remi_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
