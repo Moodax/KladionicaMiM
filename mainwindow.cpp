@@ -36,25 +36,27 @@ int random(int min, int max)
 }
 double doma,remi,gosti;
 
-std::ofstream out("Medicinska analiza.txt",std::ios::binary);
-std::ifstream in("Medicinska analiza.txt",std::ios::binary);
+std::ofstream out("Medicinska analiza.txt",std::fstream::app);
+std::ifstream in("Medicinska analiza.txt",std::fstream::app);
 static int velicina;
+int duljina;
+ int danas;
 static int* dan=new int[1000];
 void MainWindow::on_DALJE_clicked()
 {
-    int danas;
+
     time_t sad=time(0);
     tm *vrijeme=localtime(&sad);
     danas=(vrijeme->tm_year-120)*365+(vrijeme->tm_mon*31)+vrijeme->tm_mday;
     std::string unos;
     QLabel ispis;
-    int r=0,s=0,i,j;
+    int r=0,s=0,j;
     std::ifstream data;
     int izbor;
     static int a=0;
     a++;
     static QString parovi[10][2];
-    i=0;
+    static int i=0;
     if(a==1)
     {
 
@@ -62,6 +64,7 @@ void MainWindow::on_DALJE_clicked()
         ui->upis->setText(" ");
         if(izbor==1)
         {
+
             data.open("Premier League.txt");
             QString sortiraj[20];
             QString temp;
@@ -259,32 +262,6 @@ void MainWindow::on_DALJE_clicked()
                 }
             }
         }
-    if(izbor==6)
-    {
-        while(!in.eof())
-        {
-          getline(in,unos);
-          if(unos=="")
-              break;
-          dan[i]=stoi(unos);
-          i++;
-        }
-        for(j=0;j<i;j++)
-        {
-            if(unos=="")
-                break;
-            if(danas-dan[j]>7)
-            {
-                  for(s=j+1;s<i;s++)
-                  {
-                      dan[s-1]=dan[s];
-                  }
-                  i--;
-             }
-        }
-       velicina=i;
-       in.close();
-    }
     }
     if(a==2)
     {
@@ -320,11 +297,8 @@ void MainWindow::on_prvaMomcad_clicked()
 
     time_t sad=time(0);
     tm *vrijeme=localtime(&sad);
-    for(a=0;a<velicina;a++)
-    {
-        out<<dan[a]<<std::endl;
-    }
-    out<<(vrijeme->tm_year-120)*365+(vrijeme->tm_mon*31)+vrijeme->tm_mday<<std::endl;
+    a=(vrijeme->tm_year-120)*365+(vrijeme->tm_mon*31)+vrijeme->tm_mday;
+    out.write((char*)&a,sizeof(a));
 }
 
 void MainWindow::on_drugaMomcad_clicked()
@@ -347,11 +321,8 @@ void MainWindow::on_drugaMomcad_clicked()
 
     time_t sad=time(0);
     tm *vrijeme=localtime(&sad);
-    for(a=0;a<velicina;a++)
-    {
-        out<<dan[a]<<std::endl;
-    }
-    out<<(vrijeme->tm_year-120)*365+(vrijeme->tm_mon*31)+vrijeme->tm_mday<<std::endl;
+    a=(vrijeme->tm_year-120)*365+(vrijeme->tm_mon*31)+vrijeme->tm_mday;
+    out.write((char*)&a,sizeof(a));
 }
 
 void MainWindow::on_remi_clicked()
@@ -373,13 +344,74 @@ void MainWindow::on_remi_clicked()
         ui->ispis->setText("Nažalost niste osvojili "+QString::number(dobitak)+" kuna.  :(\nZa novu okladu morate ponovno pokrenuti program.\n");
     time_t sad=time(0);
     tm *vrijeme=localtime(&sad);
-    for(a=0;a<velicina;a++)
-    {
-        out<<dan[a]<<std::endl;
-    }
-    out<<(vrijeme->tm_year-120)*365+(vrijeme->tm_mon*31)+vrijeme->tm_mday<<std::endl;
+    a=(vrijeme->tm_year-120)*365+(vrijeme->tm_mon*31)+vrijeme->tm_mday;
+    out.write((char*)&a,sizeof(a));
 }
 
+void MainWindow::on_actionProvjera_o_ovisnosti_o_kla_enju_triggered()
+{
+    QLabel ispis;
+    ispis.openExternalLinks();
+    int i=0,j,s;
+    while(!in.eof())
+    {
+        in.read((char*)&dan[i],sizeof(int));
+        i++;
+    }
+    for(j=0;j<i;j++)
+    {
+        if(danas-dan[j]>7)
+        {
+              for(s=j+1;s<i;s++)
+              {
+                  dan[s-1]=dan[s];
+              }
+              i--;
+         }
+    }
+    velicina=i-1;
+    if(velicina==0)
+    {
+        ui->ispis->setText("U posljednjih tjedan dana niti jednom niste uložili novac u klađenje,svaka čast!");
+    }
+    else  if(velicina>0 && velicina<11)
+    {
+        ui->ispis->setText("U posljednjih tjedan dana ste se vrlo umjereno kladili,samo "+QString::number(velicina)+" puta, nastavite tako!\n");
+    }
+    else  if(velicina>9 && velicina<21)
+    {
+        ui->ispis->setText("U posljednjih tjedan dana ste se kladili  "+QString::number(velicina)+" puta,pripazite da ne postanete ovisni.");
+    }
+    else  if(velicina>19 && velicina<41)
+    {
+        ui->ispis->setText("U posljednjih tjedan dana ste se kladili "+QString::number(velicina)+" puta, pokazujete ozbiljne znakove ovisnosti o klađenju, pokušajte smanjiti taj broj.");
+    }
+    else  if(velicina>40)
+    {
+        ui->ispis->setText("U posljednjih tjedan dana ste se kladili vrtoglavih "+QString::number(velicina)+" puta, kontaktirajte stručnu pomoć!\n");
+    }
 
 
+}
+void MainWindow::on_actionRehabilitacijski_program_za_lije_enje_ovisnosti_o_kla_enju_triggered()
+{
+    ui->ispis->setText("<a href=\"https://www.pbsvi.hr/strucni-programi/kocka-terapijsko-rehabilitacijski-program-za-ovisnost-o-kockanju/\">Rehabilitacijski program KOCKA</a>");
 
+}
+
+void MainWindow::on_actionInformacije_o_programu_triggered()
+{
+    ui->ispis->setText("Program za projekt iz predmeta Algoritama i Programiranja u školskoj godini 2019./2020.\nVelika većina koda izrađena u jednom danu(25.5.2020.).\nAutori programa:\nMartin Šek(dizajn)\nMatija Fauković(kod)");
+}
+void MainWindow::on_DALJE_clicked(bool checked)
+{
+    checked=false;
+}
+void MainWindow::on_DALJE_pressed()
+{
+
+}
+void MainWindow::on_actionO_programu_triggered()
+{
+
+}

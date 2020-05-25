@@ -6,15 +6,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>495</width>
+    <width>668</width>
     <height>737</height>
    </rect>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>495</width>
-    <height>737</height>
-   </size>
   </property>
   <property name="palette">
    <palette>
@@ -2322,9 +2316,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
-      <width>481</width>
-      <height>461</height>
+      <y>40</y>
+      <width>531</width>
+      <height>431</height>
      </rect>
     </property>
     <property name="font">
@@ -2339,18 +2333,26 @@
     <property name="styleSheet">
      <string notr="true"/>
     </property>
+    <property name="locale">
+     <locale language="Croatian" country="Croatia"/>
+    </property>
     <property name="text">
-     <string>Dobrodošli u kladionicu MiM!
-Za početak upišite broj lige u kojoj želite uložiti svoj novac te 
-pritisnite DALJE :
-1. Premier League
-2. Bundesliga
-3. Serie A
-4. La Liga
-5. 1.HNL</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dobrodošli u kladionicu MiM!&lt;/p&gt;&lt;p&gt;Za početak upišite broj lige u kojoj želite uložiti svoj novac te &lt;/p&gt;&lt;p&gt;pritisnite DALJE :&lt;/p&gt;&lt;p&gt;1. Premier League&lt;/p&gt;&lt;p&gt;2. Bundesliga&lt;/p&gt;&lt;p&gt;3. Serie A&lt;/p&gt;&lt;p&gt;4. La Liga&lt;/p&gt;&lt;p&gt;5. 1.HNL&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
     </property>
     <property name="alignment">
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="openExternalLinks">
+     <bool>true</bool>
+    </property>
+    <property name="textInteractionFlags">
+     <set>Qt::TextBrowserInteraction</set>
     </property>
    </widget>
    <widget class="QLineEdit" name="upis">
@@ -2410,6 +2412,41 @@ pritisnite DALJE :
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>668</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuDodatne_opcije">
+    <property name="title">
+     <string>Dodatne opcije</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionProvjera_o_ovisnosti_o_kla_enju"/>
+    <addaction name="actionRehabilitacijski_program_za_lije_enje_ovisnosti_o_kla_enju"/>
+    <addaction name="actionInformacije_o_programu"/>
+   </widget>
+   <addaction name="menuDodatne_opcije"/>
+  </widget>
+  <action name="actionProvjera_o_ovisnosti_o_kla_enju">
+   <property name="text">
+    <string>Provjera o ovisnosti o klađenju</string>
+   </property>
+  </action>
+  <action name="actionRehabilitacijski_program_za_lije_enje_ovisnosti_o_kla_enju">
+   <property name="text">
+    <string>Rehabilitacijski program za liječenje ovisnosti o klađenju</string>
+   </property>
+  </action>
+  <action name="actionInformacije_o_programu">
+   <property name="text">
+    <string>Informacije o programu</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

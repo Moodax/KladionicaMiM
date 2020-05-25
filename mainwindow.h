@@ -28,6 +28,14 @@ private slots:
 
     void on_DALJE_pressed();
 
+    void on_actionProvjera_o_ovisnosti_o_kla_enju_triggered();
+
+    void on_actionRehabilitacijski_program_za_lije_enje_ovisnosti_o_kla_enju_triggered();
+
+    void on_actionO_programu_triggered();
+
+    void on_actionInformacije_o_programu_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
