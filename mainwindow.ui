@@ -2341,7 +2341,8 @@
     </property>
     <property name="text">
      <string>Dobrodošli u kladionicu MiM!
-Za početak upišite broj lige u kojoj se želite kladiti:
+Za početak upišite broj lige u kojoj želite uložiti svoj novac te 
+pritisnite DALJE :
 1. Premier League
 2. Bundesliga
 3. Serie A

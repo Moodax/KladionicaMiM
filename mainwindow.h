@@ -24,6 +24,10 @@ private slots:
 
     void on_remi_clicked();
 
+    void on_DALJE_clicked(bool checked);
+
+    void on_DALJE_pressed();
+
 private:
     Ui::MainWindow *ui;
 };
