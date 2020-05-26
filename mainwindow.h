@@ -36,6 +36,8 @@ private slots:
 
     void on_actionInformacije_o_programu_triggered();
 
+    void on_actionIzlaz_iz_programa_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

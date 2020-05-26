@@ -415,3 +415,8 @@ void MainWindow::on_actionO_programu_triggered()
 {
 
 }
+
+void MainWindow::on_actionIzlaz_iz_programa_triggered()
+{
+    qApp->exit();
+}
