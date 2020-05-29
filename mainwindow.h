@@ -38,6 +38,12 @@ private slots:
 
     void on_actionIzlaz_iz_programa_triggered();
 
+    void on_prvaMomcad_pressed();
+
+    void on_remi_pressed();
+
+    void on_drugaMomcad_pressed();
+
 private:
     Ui::MainWindow *ui;
 };

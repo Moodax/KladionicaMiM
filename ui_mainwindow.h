@@ -19,7 +19,6 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -38,7 +37,6 @@ public:
     QPushButton *remi;
     QLabel *ispis;
     QLineEdit *upis;
-    QStatusBar *statusbar;
     QMenuBar *menuBar;
     QMenu *menuDodatne_opcije;
 
@@ -47,6 +45,8 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(500, 561);
+        MainWindow->setMinimumSize(QSize(500, 561));
+        MainWindow->setMaximumSize(QSize(500, 561));
         QPalette palette;
         QBrush brush(QColor(255, 255, 255, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -54,10 +54,10 @@ public:
         QBrush brush1(QColor(0, 0, 0, 255));
         brush1.setStyle(Qt::SolidPattern);
         palette.setBrush(QPalette::Active, QPalette::Button, brush1);
-        palette.setBrush(QPalette::Active, QPalette::Light, brush1);
-        palette.setBrush(QPalette::Active, QPalette::Midlight, brush1);
-        palette.setBrush(QPalette::Active, QPalette::Dark, brush1);
-        palette.setBrush(QPalette::Active, QPalette::Mid, brush1);
+        palette.setBrush(QPalette::Active, QPalette::Light, brush);
+        palette.setBrush(QPalette::Active, QPalette::Midlight, brush);
+        palette.setBrush(QPalette::Active, QPalette::Dark, brush);
+        palette.setBrush(QPalette::Active, QPalette::Mid, brush);
         palette.setBrush(QPalette::Active, QPalette::Text, brush);
         palette.setBrush(QPalette::Active, QPalette::BrightText, brush);
         palette.setBrush(QPalette::Active, QPalette::ButtonText, brush);
@@ -65,7 +65,7 @@ public:
         palette.setBrush(QPalette::Active, QPalette::Window, brush1);
         palette.setBrush(QPalette::Active, QPalette::Shadow, brush1);
         palette.setBrush(QPalette::Active, QPalette::AlternateBase, brush1);
-        QBrush brush2(QColor(255, 255, 220, 255));
+        QBrush brush2(QColor(0, 170, 127, 255));
         brush2.setStyle(Qt::SolidPattern);
         palette.setBrush(QPalette::Active, QPalette::ToolTipBase, brush2);
         palette.setBrush(QPalette::Active, QPalette::ToolTipText, brush1);
@@ -76,10 +76,10 @@ public:
 #endif
         palette.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
         palette.setBrush(QPalette::Inactive, QPalette::Button, brush1);
-        palette.setBrush(QPalette::Inactive, QPalette::Light, brush1);
-        palette.setBrush(QPalette::Inactive, QPalette::Midlight, brush1);
-        palette.setBrush(QPalette::Inactive, QPalette::Dark, brush1);
-        palette.setBrush(QPalette::Inactive, QPalette::Mid, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::Light, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Midlight, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Dark, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Mid, brush);
         palette.setBrush(QPalette::Inactive, QPalette::Text, brush);
         palette.setBrush(QPalette::Inactive, QPalette::BrightText, brush);
         palette.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
@@ -92,15 +92,15 @@ public:
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush3);
 #endif
-        palette.setBrush(QPalette::Disabled, QPalette::WindowText, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::WindowText, brush);
         palette.setBrush(QPalette::Disabled, QPalette::Button, brush1);
-        palette.setBrush(QPalette::Disabled, QPalette::Light, brush1);
-        palette.setBrush(QPalette::Disabled, QPalette::Midlight, brush1);
-        palette.setBrush(QPalette::Disabled, QPalette::Dark, brush1);
-        palette.setBrush(QPalette::Disabled, QPalette::Mid, brush1);
-        palette.setBrush(QPalette::Disabled, QPalette::Text, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::Light, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Midlight, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Dark, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Mid, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Text, brush);
         palette.setBrush(QPalette::Disabled, QPalette::BrightText, brush);
-        palette.setBrush(QPalette::Disabled, QPalette::ButtonText, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::ButtonText, brush);
         palette.setBrush(QPalette::Disabled, QPalette::Base, brush1);
         palette.setBrush(QPalette::Disabled, QPalette::Window, brush1);
         palette.setBrush(QPalette::Disabled, QPalette::Shadow, brush1);
@@ -114,7 +114,7 @@ public:
         QFont font;
         font.setPointSize(15);
         MainWindow->setFont(font);
-        MainWindow->setStyleSheet(QString::fromUtf8(""));
+        MainWindow->setAutoFillBackground(false);
         actionProvjera_o_ovisnosti_o_kla_enju = new QAction(MainWindow);
         actionProvjera_o_ovisnosti_o_kla_enju->setObjectName(QString::fromUtf8("actionProvjera_o_ovisnosti_o_kla_enju"));
         actionRehabilitacijski_program_za_lije_enje_ovisnosti_o_kla_enju = new QAction(MainWindow);
@@ -142,7 +142,9 @@ public:
         palette1.setBrush(QPalette::Active, QPalette::Window, brush);
         palette1.setBrush(QPalette::Active, QPalette::Shadow, brush);
         palette1.setBrush(QPalette::Active, QPalette::AlternateBase, brush1);
-        palette1.setBrush(QPalette::Active, QPalette::ToolTipBase, brush2);
+        QBrush brush4(QColor(255, 255, 220, 255));
+        brush4.setStyle(Qt::SolidPattern);
+        palette1.setBrush(QPalette::Active, QPalette::ToolTipBase, brush4);
         palette1.setBrush(QPalette::Active, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette1.setBrush(QPalette::Active, QPalette::PlaceholderText, brush3);
@@ -160,7 +162,7 @@ public:
         palette1.setBrush(QPalette::Inactive, QPalette::Window, brush);
         palette1.setBrush(QPalette::Inactive, QPalette::Shadow, brush);
         palette1.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush1);
-        palette1.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush2);
+        palette1.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush4);
         palette1.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette1.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush3);
@@ -178,7 +180,7 @@ public:
         palette1.setBrush(QPalette::Disabled, QPalette::Window, brush);
         palette1.setBrush(QPalette::Disabled, QPalette::Shadow, brush);
         palette1.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
-        palette1.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush2);
+        palette1.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush4);
         palette1.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette1.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush3);
@@ -208,7 +210,7 @@ public:
         palette2.setBrush(QPalette::Active, QPalette::Window, brush);
         palette2.setBrush(QPalette::Active, QPalette::Shadow, brush);
         palette2.setBrush(QPalette::Active, QPalette::AlternateBase, brush1);
-        palette2.setBrush(QPalette::Active, QPalette::ToolTipBase, brush2);
+        palette2.setBrush(QPalette::Active, QPalette::ToolTipBase, brush4);
         palette2.setBrush(QPalette::Active, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette2.setBrush(QPalette::Active, QPalette::PlaceholderText, brush3);
@@ -226,7 +228,7 @@ public:
         palette2.setBrush(QPalette::Inactive, QPalette::Window, brush);
         palette2.setBrush(QPalette::Inactive, QPalette::Shadow, brush);
         palette2.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush1);
-        palette2.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush2);
+        palette2.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush4);
         palette2.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette2.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush3);
@@ -244,7 +246,7 @@ public:
         palette2.setBrush(QPalette::Disabled, QPalette::Window, brush);
         palette2.setBrush(QPalette::Disabled, QPalette::Shadow, brush);
         palette2.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
-        palette2.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush2);
+        palette2.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush4);
         palette2.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette2.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush3);
@@ -272,7 +274,7 @@ public:
         palette3.setBrush(QPalette::Active, QPalette::Window, brush);
         palette3.setBrush(QPalette::Active, QPalette::Shadow, brush);
         palette3.setBrush(QPalette::Active, QPalette::AlternateBase, brush1);
-        palette3.setBrush(QPalette::Active, QPalette::ToolTipBase, brush2);
+        palette3.setBrush(QPalette::Active, QPalette::ToolTipBase, brush4);
         palette3.setBrush(QPalette::Active, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette3.setBrush(QPalette::Active, QPalette::PlaceholderText, brush3);
@@ -290,7 +292,7 @@ public:
         palette3.setBrush(QPalette::Inactive, QPalette::Window, brush);
         palette3.setBrush(QPalette::Inactive, QPalette::Shadow, brush);
         palette3.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush1);
-        palette3.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush2);
+        palette3.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush4);
         palette3.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette3.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush3);
@@ -308,7 +310,7 @@ public:
         palette3.setBrush(QPalette::Disabled, QPalette::Window, brush);
         palette3.setBrush(QPalette::Disabled, QPalette::Shadow, brush);
         palette3.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
-        palette3.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush2);
+        palette3.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush4);
         palette3.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette3.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush3);
@@ -333,7 +335,7 @@ public:
         palette4.setBrush(QPalette::Active, QPalette::Window, brush);
         palette4.setBrush(QPalette::Active, QPalette::Shadow, brush);
         palette4.setBrush(QPalette::Active, QPalette::AlternateBase, brush1);
-        palette4.setBrush(QPalette::Active, QPalette::ToolTipBase, brush2);
+        palette4.setBrush(QPalette::Active, QPalette::ToolTipBase, brush4);
         palette4.setBrush(QPalette::Active, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette4.setBrush(QPalette::Active, QPalette::PlaceholderText, brush3);
@@ -351,7 +353,7 @@ public:
         palette4.setBrush(QPalette::Inactive, QPalette::Window, brush);
         palette4.setBrush(QPalette::Inactive, QPalette::Shadow, brush);
         palette4.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush1);
-        palette4.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush2);
+        palette4.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush4);
         palette4.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette4.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush3);
@@ -369,7 +371,7 @@ public:
         palette4.setBrush(QPalette::Disabled, QPalette::Window, brush);
         palette4.setBrush(QPalette::Disabled, QPalette::Shadow, brush);
         palette4.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
-        palette4.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush2);
+        palette4.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush4);
         palette4.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette4.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush3);
@@ -393,8 +395,11 @@ public:
         palette5.setBrush(QPalette::Active, QPalette::Base, brush1);
         palette5.setBrush(QPalette::Active, QPalette::Window, brush1);
         palette5.setBrush(QPalette::Active, QPalette::Shadow, brush1);
+        QBrush brush5(QColor(0, 255, 255, 255));
+        brush5.setStyle(Qt::SolidPattern);
+        palette5.setBrush(QPalette::Active, QPalette::Link, brush5);
         palette5.setBrush(QPalette::Active, QPalette::AlternateBase, brush1);
-        palette5.setBrush(QPalette::Active, QPalette::ToolTipBase, brush2);
+        palette5.setBrush(QPalette::Active, QPalette::ToolTipBase, brush4);
         palette5.setBrush(QPalette::Active, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette5.setBrush(QPalette::Active, QPalette::PlaceholderText, brush3);
@@ -411,8 +416,9 @@ public:
         palette5.setBrush(QPalette::Inactive, QPalette::Base, brush1);
         palette5.setBrush(QPalette::Inactive, QPalette::Window, brush1);
         palette5.setBrush(QPalette::Inactive, QPalette::Shadow, brush1);
+        palette5.setBrush(QPalette::Inactive, QPalette::Link, brush5);
         palette5.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush1);
-        palette5.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush2);
+        palette5.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush4);
         palette5.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette5.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush3);
@@ -429,8 +435,9 @@ public:
         palette5.setBrush(QPalette::Disabled, QPalette::Base, brush1);
         palette5.setBrush(QPalette::Disabled, QPalette::Window, brush1);
         palette5.setBrush(QPalette::Disabled, QPalette::Shadow, brush1);
+        palette5.setBrush(QPalette::Disabled, QPalette::Link, brush5);
         palette5.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
-        palette5.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush2);
+        palette5.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush4);
         palette5.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette5.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush3);
@@ -469,7 +476,7 @@ public:
         palette6.setBrush(QPalette::Active, QPalette::Window, brush);
         palette6.setBrush(QPalette::Active, QPalette::Shadow, brush);
         palette6.setBrush(QPalette::Active, QPalette::AlternateBase, brush1);
-        palette6.setBrush(QPalette::Active, QPalette::ToolTipBase, brush2);
+        palette6.setBrush(QPalette::Active, QPalette::ToolTipBase, brush4);
         palette6.setBrush(QPalette::Active, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette6.setBrush(QPalette::Active, QPalette::PlaceholderText, brush3);
@@ -487,7 +494,7 @@ public:
         palette6.setBrush(QPalette::Inactive, QPalette::Window, brush);
         palette6.setBrush(QPalette::Inactive, QPalette::Shadow, brush);
         palette6.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush1);
-        palette6.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush2);
+        palette6.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush4);
         palette6.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette6.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush3);
@@ -505,7 +512,7 @@ public:
         palette6.setBrush(QPalette::Disabled, QPalette::Window, brush);
         palette6.setBrush(QPalette::Disabled, QPalette::Shadow, brush);
         palette6.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
-        palette6.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush2);
+        palette6.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush4);
         palette6.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette6.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush3);
@@ -514,9 +521,6 @@ public:
         upis->setFont(font2);
         upis->setStyleSheet(QString::fromUtf8(""));
         MainWindow->setCentralWidget(centralwidget);
-        statusbar = new QStatusBar(MainWindow);
-        statusbar->setObjectName(QString::fromUtf8("statusbar"));
-        MainWindow->setStatusBar(statusbar);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 500, 18));
@@ -530,11 +534,13 @@ public:
         palette7.setBrush(QPalette::Active, QPalette::Text, brush);
         palette7.setBrush(QPalette::Active, QPalette::BrightText, brush);
         palette7.setBrush(QPalette::Active, QPalette::ButtonText, brush);
-        palette7.setBrush(QPalette::Active, QPalette::Base, brush);
+        palette7.setBrush(QPalette::Active, QPalette::Base, brush1);
         palette7.setBrush(QPalette::Active, QPalette::Window, brush1);
         palette7.setBrush(QPalette::Active, QPalette::Shadow, brush);
+        palette7.setBrush(QPalette::Active, QPalette::Highlight, brush);
+        palette7.setBrush(QPalette::Active, QPalette::HighlightedText, brush1);
         palette7.setBrush(QPalette::Active, QPalette::AlternateBase, brush);
-        palette7.setBrush(QPalette::Active, QPalette::ToolTipBase, brush2);
+        palette7.setBrush(QPalette::Active, QPalette::ToolTipBase, brush4);
         palette7.setBrush(QPalette::Active, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette7.setBrush(QPalette::Active, QPalette::PlaceholderText, brush3);
@@ -548,11 +554,13 @@ public:
         palette7.setBrush(QPalette::Inactive, QPalette::Text, brush);
         palette7.setBrush(QPalette::Inactive, QPalette::BrightText, brush);
         palette7.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
-        palette7.setBrush(QPalette::Inactive, QPalette::Base, brush);
+        palette7.setBrush(QPalette::Inactive, QPalette::Base, brush1);
         palette7.setBrush(QPalette::Inactive, QPalette::Window, brush1);
         palette7.setBrush(QPalette::Inactive, QPalette::Shadow, brush);
+        palette7.setBrush(QPalette::Inactive, QPalette::Highlight, brush);
+        palette7.setBrush(QPalette::Inactive, QPalette::HighlightedText, brush1);
         palette7.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush);
-        palette7.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush2);
+        palette7.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush4);
         palette7.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette7.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush3);
@@ -569,8 +577,10 @@ public:
         palette7.setBrush(QPalette::Disabled, QPalette::Base, brush1);
         palette7.setBrush(QPalette::Disabled, QPalette::Window, brush1);
         palette7.setBrush(QPalette::Disabled, QPalette::Shadow, brush);
+        palette7.setBrush(QPalette::Disabled, QPalette::Highlight, brush);
+        palette7.setBrush(QPalette::Disabled, QPalette::HighlightedText, brush1);
         palette7.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush);
-        palette7.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush2);
+        palette7.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush4);
         palette7.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette7.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush3);
@@ -580,6 +590,15 @@ public:
         font4.setFamily(QString::fromUtf8("Perfect DOS VGA 437 Win"));
         font4.setPointSize(10);
         menuBar->setFont(font4);
+        menuBar->setLayoutDirection(Qt::LeftToRight);
+        menuBar->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 0, 0);\n"
+"alternate-background-color: rgb(255, 255, 255);\n"
+"border-color: rgb(255, 255, 255);\n"
+"border-width 1.2 px;\n"
+"border-bottom-color: rgb(255, 255, 255);\n"
+"selection-background-color: rgb(255, 255, 255);\n"
+"selection-color: rgb(0, 0, 0);\n"
+"gridline-color: rgb(255, 255, 255);"));
         menuDodatne_opcije = new QMenu(menuBar);
         menuDodatne_opcije->setObjectName(QString::fromUtf8("menuDodatne_opcije"));
         QPalette palette8;
@@ -595,8 +614,10 @@ public:
         palette8.setBrush(QPalette::Active, QPalette::Base, brush1);
         palette8.setBrush(QPalette::Active, QPalette::Window, brush1);
         palette8.setBrush(QPalette::Active, QPalette::Shadow, brush1);
-        palette8.setBrush(QPalette::Active, QPalette::AlternateBase, brush1);
-        palette8.setBrush(QPalette::Active, QPalette::ToolTipBase, brush2);
+        palette8.setBrush(QPalette::Active, QPalette::Highlight, brush);
+        palette8.setBrush(QPalette::Active, QPalette::HighlightedText, brush1);
+        palette8.setBrush(QPalette::Active, QPalette::AlternateBase, brush);
+        palette8.setBrush(QPalette::Active, QPalette::ToolTipBase, brush4);
         palette8.setBrush(QPalette::Active, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette8.setBrush(QPalette::Active, QPalette::PlaceholderText, brush3);
@@ -613,8 +634,10 @@ public:
         palette8.setBrush(QPalette::Inactive, QPalette::Base, brush1);
         palette8.setBrush(QPalette::Inactive, QPalette::Window, brush1);
         palette8.setBrush(QPalette::Inactive, QPalette::Shadow, brush1);
-        palette8.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush1);
-        palette8.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush2);
+        palette8.setBrush(QPalette::Inactive, QPalette::Highlight, brush);
+        palette8.setBrush(QPalette::Inactive, QPalette::HighlightedText, brush1);
+        palette8.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush);
+        palette8.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush4);
         palette8.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette8.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush3);
@@ -631,14 +654,18 @@ public:
         palette8.setBrush(QPalette::Disabled, QPalette::Base, brush1);
         palette8.setBrush(QPalette::Disabled, QPalette::Window, brush1);
         palette8.setBrush(QPalette::Disabled, QPalette::Shadow, brush1);
-        palette8.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
-        palette8.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush2);
+        palette8.setBrush(QPalette::Disabled, QPalette::Highlight, brush);
+        palette8.setBrush(QPalette::Disabled, QPalette::HighlightedText, brush1);
+        palette8.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush);
+        palette8.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush4);
         palette8.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush1);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette8.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush3);
 #endif
         menuDodatne_opcije->setPalette(palette8);
         menuDodatne_opcije->setFont(font4);
+        menuDodatne_opcije->setStyleSheet(QString::fromUtf8("selection-background-color: rgb(255, 255, 255);\n"
+"selection-color: rgb(0, 0, 0);"));
         MainWindow->setMenuBar(menuBar);
 
         menuBar->addAction(menuDodatne_opcije->menuAction());
@@ -656,15 +683,15 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "KladionicaMiM", nullptr));
-        actionProvjera_o_ovisnosti_o_kla_enju->setText(QCoreApplication::translate("MainWindow", "Provjera o ovisnosti o kla\304\221enju", nullptr));
-        actionRehabilitacijski_program_za_lije_enje_ovisnosti_o_kla_enju->setText(QCoreApplication::translate("MainWindow", "Rehabilitacijski program za lije\304\215enje ovisnosti o kla\304\221enju", nullptr));
+        actionProvjera_o_ovisnosti_o_kla_enju->setText(QCoreApplication::translate("MainWindow", "Provjera o ovisnosti o kladenju", nullptr));
+        actionRehabilitacijski_program_za_lije_enje_ovisnosti_o_kla_enju->setText(QCoreApplication::translate("MainWindow", "Rehabilitacijski program za lijecenje ovisnosti o kladenju", nullptr));
         actionInformacije_o_programu->setText(QCoreApplication::translate("MainWindow", "Informacije o programu", nullptr));
         actionIzlaz_iz_programa->setText(QCoreApplication::translate("MainWindow", "Izlaz iz programa", nullptr));
         DALJE->setText(QCoreApplication::translate("MainWindow", "DALJE", nullptr));
         prvaMomcad->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
         drugaMomcad->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
         remi->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
-        ispis->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Dobrodo\305\241li u kladionicu MiM!</p><p>Za po\304\215etak upi\305\241ite broj lige u kojoj \305\276elite ulo\305\276iti svoj novac te </p><p>pritisnite DALJE :</p><p>1. Premier League</p><p>2. Bundesliga</p><p>3. Serie A</p><p>4. La Liga</p><p>5. 1.HNL</p></body></html>", nullptr));
+        ispis->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Dobrodosli u kladionicu MiM!</p><p>Za pocetak upisite broj lige u kojoj zelite uloziti svoj novac te </p><p>pritisnite DALJE :</p><p>1. Premier League</p><p>2. Bundesliga</p><p>3. Serie A</p><p>4. La Liga</p><p>5. 1.HNL</p></body></html>", nullptr));
         menuDodatne_opcije->setTitle(QCoreApplication::translate("MainWindow", "Dodatne opcije", nullptr));
     } // retranslateUi
 

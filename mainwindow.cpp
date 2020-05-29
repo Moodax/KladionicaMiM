@@ -12,17 +12,20 @@
 #include<random>
 #include<unistd.h>
 #include<ctime>
+#include <windows.h>
 #include<iostream>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+   qApp->setStyleSheet("QPushButton { background-color: black;border-style: outset;border-width: 1.5px;border-color: beige;}");
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+
 }
 int random(int min, int max)
 {
@@ -37,14 +40,13 @@ int random(int min, int max)
 double doma,remi,gosti;
 
 std::ofstream out("Medicinska analiza.txt",std::fstream::app);
-std::ifstream in("Medicinska analiza.txt",std::fstream::app);
 static int velicina;
 int duljina;
  int danas;
 static int* dan=new int[1000];
 void MainWindow::on_DALJE_clicked()
 {
-
+    ui->DALJE->setStyleSheet("background-color: black;border-style: outset;border-width: 1.5px;border-color: beige;");
     time_t sad=time(0);
     tm *vrijeme=localtime(&sad);
     danas=(vrijeme->tm_year-120)*365+(vrijeme->tm_mon*31)+vrijeme->tm_mday;
@@ -273,12 +275,13 @@ void MainWindow::on_DALJE_clicked()
         remi=round(remi*100)/100;
         gosti=(double)random(400,2000)/random(1000,1500)+1.5;
         gosti=round(gosti*100)/100;
-        ui->ispis->setText("Odabrali ste par broj "+QString::number(izbor)+":\n"+ parovi[izbor-1][0]+" - "+ parovi[izbor-1][1] +"\n"+ QString::number(doma)+"      "+QString::number(remi)+"      "+ QString::number(gosti)+"\nUpišite vaš ulog i pritisnite gumb na koju momčad želite uložiti.\nPritiskom na tipku 1 birate "+parovi[izbor-1][0]+".\nPritiskom na tipku X birate neriješeni rezultat, a pritiskom\nna tipku 2 birate "+parovi[izbor-1][1]+".");
+        ui->ispis->setText("Odabrali ste par broj "+QString::number(izbor)+":\n"+ parovi[izbor-1][0]+" - "+ parovi[izbor-1][1] +"\n"+ QString::number(doma)+"      "+QString::number(remi)+"      "+ QString::number(gosti)+"\nUpisite vas ulog i pritisnite gumb na koju momCad zelite uloziti.\nPritiskom na tipku 1 birate "+parovi[izbor-1][0]+".\nPritiskom na tipku X birate nerijeseni rezultat, a pritiskom\nna tipku 2 birate "+parovi[izbor-1][1]+".");
     }
 }
 
 void MainWindow::on_prvaMomcad_clicked()
 {
+    ui->prvaMomcad->setStyleSheet("background-color: black;border-style: outset;border-width: 1.5px;border-color: beige;");
     double dobitak;
     int a;
     double min;
@@ -291,9 +294,9 @@ void MainWindow::on_prvaMomcad_clicked()
     min=std::min(doma,gosti);
     min=std::min(min,remi);
     if(min==doma)
-        ui->ispis->setText("Čestitamo! Osvojili ste "+QString::number(dobitak)+" kuna!\nZa novu okladu morate ponovno pokrenuti program.");
+        ui->ispis->setText("Cestitamo! Osvojili ste "+QString::number(dobitak)+" kuna!\nZa novu okladu morate ponovno pokrenuti program.");
     else
-        ui->ispis->setText("Nažalost niste osvojili "+QString::number(dobitak)+" kuna.  :(\nZa novu okladu morate ponovno pokrenuti program.\n");
+        ui->ispis->setText("Nazalost niste osvojili "+QString::number(dobitak)+" kuna.  :(\nZa novu okladu morate ponovno pokrenuti program.\n");
 
     time_t sad=time(0);
     tm *vrijeme=localtime(&sad);
@@ -303,6 +306,7 @@ void MainWindow::on_prvaMomcad_clicked()
 
 void MainWindow::on_drugaMomcad_clicked()
 {
+    ui->drugaMomcad->setStyleSheet("background-color: black;border-style: outset;border-width: 1.5px;border-color: beige;");
     double dobitak;
     int a;
     double min;
@@ -315,9 +319,9 @@ void MainWindow::on_drugaMomcad_clicked()
     min=std::min(doma,gosti);
     min=std::min(min,remi);
     if(min==gosti)
-        ui->ispis->setText("Čestitamo! Osvojili ste "+QString::number(dobitak)+" kuna!\nZa novu okladu morate ponovno pokrenuti program.");
+        ui->ispis->setText("Cestitamo! Osvojili ste "+QString::number(dobitak)+" kuna!\nZa novu okladu morate ponovno pokrenuti program.");
     else
-        ui->ispis->setText("Nažalost niste osvojili "+QString::number(dobitak)+"  kuna.  :(\nZa novu okladu morate ponovno pokrenuti program.\n");
+        ui->ispis->setText("Nazalost niste osvojili "+QString::number(dobitak)+"  kuna.  :(\nZa novu okladu morate ponovno pokrenuti program.\n");
 
     time_t sad=time(0);
     tm *vrijeme=localtime(&sad);
@@ -327,6 +331,7 @@ void MainWindow::on_drugaMomcad_clicked()
 
 void MainWindow::on_remi_clicked()
 {
+    ui->remi->setStyleSheet("background-color: black;border-style: outset;border-width: 1.5px;border-color: beige;");
     double dobitak;
     int a;
     double min;
@@ -339,9 +344,9 @@ void MainWindow::on_remi_clicked()
     min=std::min(doma,gosti);
     min=std::min(min,remi);
     if(min==remi)
-        ui->ispis->setText("Čestitamo! Osvojili ste "+QString::number(dobitak)+" kuna!\nZa novu okladu morate ponovno pokrenuti program.");
+        ui->ispis->setText("Cestitamo! Osvojili ste "+QString::number(dobitak)+" kuna!\nZa novu okladu morate ponovno pokrenuti program.");
     else
-        ui->ispis->setText("Nažalost niste osvojili "+QString::number(dobitak)+" kuna.  :(\nZa novu okladu morate ponovno pokrenuti program.\n");
+        ui->ispis->setText("Nazalost niste osvojili "+QString::number(dobitak)+" kuna.  :(\nZa novu okladu morate ponovno pokrenuti program.\n");
     time_t sad=time(0);
     tm *vrijeme=localtime(&sad);
     a=(vrijeme->tm_year-120)*365+(vrijeme->tm_mon*31)+vrijeme->tm_mday;
@@ -350,6 +355,7 @@ void MainWindow::on_remi_clicked()
 
 void MainWindow::on_actionProvjera_o_ovisnosti_o_kla_enju_triggered()
 {
+    std::ifstream in("Medicinska analiza.txt",std::fstream::app);
     QLabel ispis;
     ispis.openExternalLinks();
     int i=0,j,s;
@@ -372,7 +378,7 @@ void MainWindow::on_actionProvjera_o_ovisnosti_o_kla_enju_triggered()
     velicina=i-1;
     if(velicina==0)
     {
-        ui->ispis->setText("U posljednjih tjedan dana niti jednom niste uložili novac u klađenje,svaka čast!");
+        ui->ispis->setText("U posljednjih tjedan dana niti jednom niste ulozili novac u klađenje,svaka cast!");
     }
     else  if(velicina>0 && velicina<11)
     {
@@ -380,15 +386,15 @@ void MainWindow::on_actionProvjera_o_ovisnosti_o_kla_enju_triggered()
     }
     else  if(velicina>9 && velicina<21)
     {
-        ui->ispis->setText("U posljednjih tjedan dana ste se kladili  "+QString::number(velicina)+" puta,pripazite da ne postanete ovisni.");
+        ui->ispis->setText("U posljednjih tjedan dana ste se kladili "+QString::number(velicina)+" puta,pripazite da ne postanete ovisni.");
     }
     else  if(velicina>19 && velicina<41)
     {
-        ui->ispis->setText("U posljednjih tjedan dana ste se kladili "+QString::number(velicina)+" puta, pokazujete ozbiljne znakove ovisnosti o klađenju, pokušajte smanjiti taj broj.");
+        ui->ispis->setText("U posljednjih tjedan dana ste se kladili "+QString::number(velicina)+" puta, pokazujete ozbiljne znakove ovisnosti o klađenju, pokusajte smanjiti taj broj.");
     }
     else  if(velicina>40)
     {
-        ui->ispis->setText("U posljednjih tjedan dana ste se kladili vrtoglavih "+QString::number(velicina)+" puta, kontaktirajte stručnu pomoć!\n");
+        ui->ispis->setText("U posljednjih tjedan dana ste se kladili vrtoglavih "+QString::number(velicina)+" puta, kontaktirajte strucnu pomoc!\n");
     }
 
 
@@ -401,15 +407,14 @@ void MainWindow::on_actionRehabilitacijski_program_za_lije_enje_ovisnosti_o_kla_
 
 void MainWindow::on_actionInformacije_o_programu_triggered()
 {
-    ui->ispis->setText("Program za projekt iz predmeta Algoritama i Programiranja u školskoj godini 2019./2020.\nVelika većina koda izrađena u jednom danu(25.5.2020.).\nAutori programa:\nMartin Šek(dizajn)\nMatija Fauković(kod)");
+    ui->ispis->setText("Program za projekt iz predmeta Algoritama i Programiranja u skolskoj godini 2019./2020.\nVelika vecina koda izrađena u jednom danu(25.5.2020.).\nAutori programa:\nMartin Sek(dizajn)\nMatija Faukovic(kod)");
 }
 void MainWindow::on_DALJE_clicked(bool checked)
 {
-    checked=false;
 }
 void MainWindow::on_DALJE_pressed()
 {
-
+       ui->DALJE->setStyleSheet("background-color: white;border-style: inset;border-width: 1.5px;border-color: white;");
 }
 void MainWindow::on_actionO_programu_triggered()
 {
@@ -419,4 +424,19 @@ void MainWindow::on_actionO_programu_triggered()
 void MainWindow::on_actionIzlaz_iz_programa_triggered()
 {
     qApp->exit();
+}
+
+void MainWindow::on_prvaMomcad_pressed()
+{
+    ui->prvaMomcad->setStyleSheet("background-color: white;border-style: inset;border-width: 1.5px;border-color: white;");
+}
+
+void MainWindow::on_remi_pressed()
+{
+    ui->remi->setStyleSheet("background-color: white;border-style: inset;border-width: 1.5px;border-color: white;");
+}
+
+void MainWindow::on_drugaMomcad_pressed()
+{
+    ui->drugaMomcad->setStyleSheet("background-color: white;border-style: inset;border-width: 1.5px;border-color: white;");
 }
